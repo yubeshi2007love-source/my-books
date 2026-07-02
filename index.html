@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>本の森</title>
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 25px;
+      padding: 40px 20px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .book-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    .book-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .book-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+    .book-info {
+      padding: 15px;
+      text-align: center;
+    }
+    .book-title {
+      font-size: 1.05em;
+      font-weight: bold;
+      margin: 8px 0 4px;
+    }
+    .book-author {
+      font-size: 0.95em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header style="background: #1e2a44; color: white; padding: 25px 0; text-align: center;">
+    <h1 style="margin: 0;">本の森</h1>
+    <nav style="margin-top: 15px;">
+      <a href="index.html" style="color:white; margin: 0 20px;">ホーム</a>
+      <a href="schedule.html" style="color:white; margin: 0 20px;">あらすじ紹介</a>
+      <a href="ticket.html" style="color:white; margin: 0 20px;">購入リンク</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="text-align:center; margin: 50px 0 30px; font-size: 1.8em; color: #1e2a44;">
+      私のおすすめの本を紹介！
+    </h2>
+    
+    <div id="bookGrid" class="book-grid"></div>
+  </main>
+
+  <script>
+    const performersPath = "./images/performers/";
+    
+    const books = [
+      { filename: "すべてがFになる.png", title: "すべてがFになる", author: "森博嗣" },
+      { filename: "ハサミ男.jpg", title: "ハサミ男", author: "殊能将之" },
+      { filename: "虐殺器官.jpg", title: "虐殺器官", author: "伊藤計劃" },
+      { filename: "幻夜.jpg", title: "幻夜", author: "東野圭吾" },
+      { filename: "幸せの書.jpg", title: "しあわせの書", author: "泡坂妻夫" },
+      { filename: "獣の奏者.jpg", title: "獣の奏者", author: "上橋菜穂子" },
+      { filename: "another.jpg", title: "Another", author: "綾辻行人" },
+      { filename: "the fault in our stars.jpg", title: "The Fault in Our Stars", author: "John Green" },
+      { filename: "春季限定いちごタルト.jpg", title: "春期限定いちごタルト事件", author: "米澤穂信" },
+      { filename: "勝手に震えてろ.jpg", title: "勝手にふるえてろ", author: "綿矢りさ" },
+      { filename: "夜は短し歩けよ乙女.jpg", title: "夜は短し歩けよ乙女", author: "森見登美彦" },
+      { filename: "流浪の月.jpg", title: "流浪の月", author: "凪良ゆう" },
+      { filename: "冷たい校舎の時は止まる.jpg", title: "冷たい校舎の時は止まる", author: "辻村深月" }
+    ];
+
+    const grid = document.getElementById('bookGrid');
+
+    books.forEach(book => {
+      const card = document.createElement('div');
+      card.className = 'book-card';
+      card.innerHTML = `
+        <img src="${performersPath}${book.filename}" 
+             alt="${book.title}" 
+             onerror="console.error('画像が見つかりません: ${book.filename}'); this.style.display='none';">
+        <div class="book-info">
+          <div class="book-title">${book.title}</div>
+          <div class="book-author">${book.author}</div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>あらすじ紹介 - 本の森</title>
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .synopsis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(620px, 1fr));
+      gap: 30px;
+      padding: 40px 20px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .book-synopsis {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 25px;
+      align-items: flex-start;
+    }
+    .book-synopsis img {
+      width: 160px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .synopsis-content {
+      flex: 1;
+    }
+    .synopsis-content h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.3em;
+    }
+    .genre {
+      color: #d35400;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    .author {
+      color: #555;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <header style="background: #1e2a44; color: white; padding: 25px 0; text-align: center;">
+    <h1 style="margin: 0;">本の森</h1>
+    <nav style="margin-top: 15px;">
+      <a href="index.html" style="color:white; margin: 0 20px;">ホーム</a>
+      <a href="schedule.html" style="color:white; margin: 0 20px;">あらすじ紹介</a>
+      <a href="ticket.html" style="color:white; margin: 0 20px;">購入リンク</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 style="text-align:center; margin: 50px 0 30px; font-size: 1.8em;">あらすじ紹介</h2>
+    
+    <div class="synopsis-grid" id="synopsisGrid">
+      <!-- JavaScriptで自動生成されます -->
+    </div>
+  </main>
+
+  <script>
+    const performersPath = "images/performers/";
+    
+    const books = [
+      { 
+        filename: "すべてがFになる.png", 
+        title: "すべてがFになる", 
+        author: "森博嗣", 
+        genre: "ミステリー", 
+        synopsis: "孤島の研究所で天才工学博士が密室状態の中で殺害される。大学助教授の犀川創平と学生の西之園萌絵が、不可解な事件の謎と犯人の心理に迫る。" 
+      },
+      { 
+        filename: "ハサミ男.jpg", 
+        title: "ハサミ男", 
+        author: "殊能将之", 
+        genre: "ミステリー サスペンス", 
+        synopsis: "少女ばかりを狙う連続殺人犯「ハサミ男」。次の標的を探していた犯人は、自分より先に少女が殺されたことを知り、事件を追ううちに驚愕の真相へたどり着く。" 
+      },
+      { 
+        filename: "虐殺器官.jpg", 
+        title: "虐殺器官", 
+        author: "伊藤計劃", 
+        genre: "SF ミステリー", 
+        synopsis: "テロが激化した近未来。各地の虐殺事件の背後にいる謎の男ジョン・ポールを追う情報軍人クラヴィス。人間の暴力性と言語の関係を描く。" 
+      },
+      { 
+        filename: "幻夜.jpg", 
+        title: "幻夜", 
+        author: "東野圭吾", 
+        genre: "ミステリー サスペンス", 
+        synopsis: "大震災の混乱の中で出会った雅也と美冬。雅也は美冬に惹かれ人生を捧げるが、彼女の周囲では不可解な事件が続く。欲望と秘密に満ちた長編サスペンス。" 
+      },
+      { 
+        filename: "幸せの書.jpg", 
+        title: "しあわせの書", 
+        author: "泡坂妻夫", 
+        genre: "ミステリー からくり本", 
+        synopsis: "宗教団体を舞台にした奇妙な物語。信者たちの人間模様と謎が描かれるが、本の構造自体がしかけの一部となる大胆なトリックが特徴の異色ミステリ作品。" 
+      },
+      { 
+        filename: "獣の奏者.jpg", 
+        title: "獣の奏者", 
+        author: "上橋菜穂子", 
+        genre: "ファンタジー 児童書", 
+        synopsis: "獣を操る力を持つ少女エリンが、王国を支える巨大な獣たちと関わりながら成長していく。命や権力、人と自然の関係を描いた壮大なファンタジー。" 
+      },
+      { 
+        filename: "another.jpg", 
+        title: "Another", 
+        author: "綾辻行人", 
+        genre: "ミステリー 学園モノ", 
+        synopsis: "転校生の榊原恒一は、クラスで存在を無視される少女・見崎鳴と出会う。その後、クラスメイトたちに次々と死が訪れ、恐ろしい秘密が明らかになる。" 
+      },
+      { 
+        filename: "the fault in our stars.jpg", 
+        title: "The Fault in Our Stars", 
+        author: "John Green", 
+        genre: "青春小説", 
+        synopsis: "甲状腺がんを患う少女ヘイゼルは、がん患者の集まりでガスと出会う。二人は惹かれ合いながら限られた時間を生き、愛と喪失の意味を見つめていく。" 
+      },
+      { 
+        filename: "春季限定いちごタルト.jpg", 
+        title: "春期限定いちごタルト事件", 
+        author: "米澤穂信", 
+        genre: "ミステリー 学園モノ", 
+        synopsis: "「小市民」を目指す高校生の小鳩常悟朗と小佐内ゆき。平穏な日常を望む二人だが、学園で起こる些細な謎や事件に巻き込まれ、推理を繰り広げる。" 
+      },
+      { 
+        filename: "勝手に震えてろ.jpg", 
+        title: "勝手にふるえてろ", 
+        author: "綿矢りさ", 
+        genre: "純文学", 
+        synopsis: "恋愛経験のない26歳のヨシカは、長年片思いする同級生と自分に好意を寄せる男性の間で揺れ動く。妄想と現実が交錯する恋愛小説。" 
+      },
+      { 
+        filename: "夜は短し歩けよ乙女.jpg", 
+        title: "夜は短し歩けよ乙女", 
+        author: "森見登美彦", 
+        genre: "学園モノ", 
+        synopsis: "京都を舞台に、「黒髪の乙女」に恋する先輩が彼女を追いかけ続ける。奇想天外な出来事が連鎖する一夜を通して描かれる青春ファンタジー。" 
+      },
+      { 
+        filename: "流浪の月.jpg", 
+        title: "流浪の月", 
+        author: "凪良ゆう", 
+        genre: "群像劇", 
+        synopsis: "少女時代に誘拐事件の被害者とされた更紗と、誘拐犯と報じられた文。再会した二人は世間の偏見に苦しみながらも、自分たちの居場所を探していく。" 
+      },
+      { 
+        filename: "冷たい校舎の時は止まる.jpg", 
+        title: "冷たい校舎の時は止まる", 
+        author: "辻村深月", 
+        genre: "ミステリー 学園モノ", 
+        synopsis: "雪の日、学校に閉じ込められた高校生たち。誰か一人の存在だけが思い出せない状況の中、自殺した生徒は誰なのかを巡って過去と心の傷が明かされる。" 
+      }
+    ];
+
+    const grid = document.getElementById('synopsisGrid');
+
+    books.forEach(book => {
+      const card = document.createElement('div');
+      card.className = 'book-synopsis';
+      card.innerHTML = `
+        <img src="${performersPath}${book.filename}" alt="${book.title}">
+        <div class="synopsis-content">
+          <h3>${book.title}</h3>
+          <div class="genre">${book.genre}</div>
+          <div class="author"><strong>${book.author}</strong></div>
+          <p>${book.synopsis}</p>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
